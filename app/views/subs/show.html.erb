@@ -1,0 +1,13 @@
+<h2><%= @sub.name %></h2>
+
+<ul>
+	<% @sub.links.try(:each) do |link| %>
+		<li>
+			<strong><%= link.title %></strong> - <em><%= link.url %></em>
+			<br />
+			<pre>
+				<%= link.body %>
+			</pre>
+		</li>
+	<% end %>
+</ul>

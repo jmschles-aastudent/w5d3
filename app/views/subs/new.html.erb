@@ -1,0 +1,40 @@
+<h2>Create New Sub</h2>
+
+<form action="<%= subs_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<p>
+		<label for="sub_name">Sub Name</label>
+		<input type="text" id="sub_name" name="sub[name]" value="<%= @sub.name %>">
+	</p>
+
+	<p>Links</p>
+	<% 5.times do |i| %>
+		<% title_id = "sub_links_attributes_#{i}_title" %>
+		<% url_id = "sub_links_attributes_#{i}_url" %>
+		<% body_id = "sub_links_attributes_#{i}_body" %>
+		<p>Link <%= i+1 %></p>
+		
+		<input type="hidden" name="sub[links_attributes][<%= i %>][author_id]" value="<%= current_user.id %>">
+
+		<label for="<%= title_id %>">Title</label>
+		<input type="text" id="<%= title_id %>" name="sub[links_attributes][<%= i %>][title]">
+
+		<br />
+
+		<label for="<%= url_id %>">URL</label>
+		<input type="text" id="<%= url_id %>" name="sub[links_attributes][<%= i %>][url]">
+
+		<br />
+
+		<label for="<%= body_id %>">Body</label>
+		<br />
+		<textarea id="<%= body_id %>" name="sub[links_attributes][<%= i %>][body]"></textarea>
+
+		<br />
+
+	<% end %>
+
+	<input type="submit" value="Create Sub">
+
+</form>

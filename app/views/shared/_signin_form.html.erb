@@ -1,0 +1,25 @@
+<% if intent == "signup" %>
+	<% action_url = users_url %>
+	<% text = "Sign Up" %>
+<% elsif intent == "signin" %>
+	<% action_url = session_url %>
+	<% text = "Sign In" %>
+<% end %>
+
+<h2><%= text %></h2>
+
+<form action="<%= action_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label for="username">Username</label>
+	<input type="text" name="user[username]" id="username" value="<%= user.username %>">
+
+	<br />
+
+	<label for="password">Password</label>
+	<input type="password" name="user[password]" id="password">
+
+	<br />
+
+	<input type="submit" value="<%= text %>">
+</form>
