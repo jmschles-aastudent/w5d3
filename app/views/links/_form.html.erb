@@ -29,5 +29,16 @@
 
 	<br />
 
+	<p>Associated Subs</p>
+	<% Sub.all.each do |sub| %>
+		<input
+			type="checkbox"
+			name="link[sub_ids][]"
+			value="<%= sub.id %>"
+			id="link_sub_ids_<%= sub.id %>">
+		<label for="link_sub_ids_<%= sub.id %>"><%= sub.name %></label>
+		<br />
+	<% end %>
+
 	<input type="submit" value="<%= text %>">
 </form>

@@ -12,7 +12,7 @@
 #
 
 class Link < ActiveRecord::Base
-  attr_accessible :body, :title, :url, :author_id
+  attr_accessible :body, :title, :url, :author_id, :sub_ids
 
   validates :title, :body, :presence => true
 
