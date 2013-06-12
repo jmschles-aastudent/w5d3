@@ -1,0 +1,33 @@
+<% if intent == "new" %>
+	<% text, action_url = "Create Link", links_url %>
+<% elsif intent == "edit" %>
+	<% text, action_url = "Edit Link", link_url(link) %>
+<% end %>
+
+<h2><%= text %></h2>
+
+<form action="<%= action_url %>" method="post">
+	<% if intent == "edit" %>
+		<input type="hidden" name="_method" value="put">
+	<% end %>
+
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label for="link_title">Title</label>
+	<input type="text" id="link_title" name="link[title]" value="<%= link.title %>">
+
+	<br />
+
+	<label for="link_url">URL</label>
+	<input type="text" id="link_url" name="link[url]" value="<%= link.url %>">
+
+	<br />
+
+	<label for="link_body">Body</label>
+	<br />
+	<textarea id="link_body" name="link[body]"><%= link.body %></textarea>
+
+	<br />
+
+	<input type="submit" value="<%= text %>">
+</form>

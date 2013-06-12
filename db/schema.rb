@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612180043) do
+ActiveRecord::Schema.define(:version => 20130612192358) do
+
+  create_table "link_subs", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "sub_id"
+    t.integer  "link_id"
+  end
 
   create_table "links", :force => true do |t|
     t.string   "title"
@@ -19,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20130612180043) do
     t.string   "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "sub_id"
     t.integer  "author_id"
   end
 

@@ -3,11 +3,11 @@
 <ul>
 	<% @sub.links.try(:each) do |link| %>
 		<li>
-			<strong><%= link.title %></strong> - <em><%= link.url %></em>
+			<strong><%= link.title %></strong> - <em><%= link_to link.url, link_url(link) %></em>
 			<br />
-			<pre>
-				<%= link.body %>
-			</pre>
+			<% if link.author_id == current_user.id %>
+				<%= button_to "Edit Link", edit_link_url, :method => :get %>
+			<% end %>
 		</li>
 	<% end %>
 </ul>

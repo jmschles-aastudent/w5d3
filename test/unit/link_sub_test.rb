@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: links
+# Table name: link_subs
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
-#  url        :string(255)
-#  body       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  author_id  :integer
+#  sub_id     :integer
+#  link_id    :integer
 #
 
 require 'test_helper'
 
-class LinkTest < ActiveSupport::TestCase
+class LinkSubTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

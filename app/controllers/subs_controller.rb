@@ -1,8 +1,11 @@
 class SubsController < ApplicationController
 
+	def index
+		@subs = Sub.all
+	end
+
 	def create
-		@sub = Sub.new(params[:sub])
-		@sub.moderator_id = current_user.id
+		@sub = current_user.moderated_subs.build(params[:sub])
 		if @sub.save
 			redirect_to sub_url(@sub)
 		else
