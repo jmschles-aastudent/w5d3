@@ -35,10 +35,12 @@
 			type="checkbox"
 			name="link[sub_ids][]"
 			value="<%= sub.id %>"
-			id="link_sub_ids_<%= sub.id %>">
+			id="link_sub_ids_<%= sub.id %>"
+			<%= "checked" if sub.links.include?(link) %>>
 		<label for="link_sub_ids_<%= sub.id %>"><%= sub.name %></label>
 		<br />
 	<% end %>
 
+	<input type="hidden" name="link[sub_ids][]" value="">
 	<input type="submit" value="<%= text %>">
 </form>

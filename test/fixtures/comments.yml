@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer          not null, primary key
+#  link_id    :integer
+#  parent_id  :integer
+#  body       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  author_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: 1
+  body: MyString
+
+two:
+  parent_id: 1
+  body: MyString

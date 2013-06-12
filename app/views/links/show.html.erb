@@ -3,3 +3,24 @@
 <p><em><%= @link.url %></em></p>
 
 <p><%= @link.body %></p>
+
+<h4>Comments</h4>
+<ul>
+	<% @comments.each do |comment| %>
+		<li><%= link_to comment.body, comment_url(comment) %></li>
+	<% end %>
+</ul>
+
+<h4>Add Comment</h4>
+<form action="<%= comments_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="comment[link_id]" value="<%= @link.id %>"
+
+	<label for="comment_body">Comment Body</label>
+	<br />
+	<textarea id="comment_body" name="comment[body]"></textarea>
+
+	<br />
+
+	<input type="submit" value="Create Comment">
+</form>
