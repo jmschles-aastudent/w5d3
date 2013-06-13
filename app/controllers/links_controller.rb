@@ -29,6 +29,7 @@ class LinksController < ApplicationController
 	end
 
 	def show
+		@already_rendered = []
 		@link = Link.find(params[:id])
 		@comments = @link.comments
 	end

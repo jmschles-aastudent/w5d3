@@ -1,0 +1,8 @@
+<li>
+	<%= comment.body %>
+	<% if comment.children.present? %>
+		<ul>
+			<%= render :partial => 'comment', :collection => comment.children, :locals => { :already_rendered => already_rendered } %>
+		</ul>
+	<% end %>
+</li>

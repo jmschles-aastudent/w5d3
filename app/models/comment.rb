@@ -12,11 +12,16 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :body, :parent_id, :link_id
+  attr_accessible :body, :parent_id, :link_id, :parent, :children
 
   validates :body, :presence => true
   validates :link_id, :presence => true
 
   belongs_to :link
   belongs_to :author, :class_name => "User"
+
+  def children
+  	self.class.where( :parent_id => self.id )
+  end
+
 end
