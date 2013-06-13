@@ -1,0 +1,68 @@
+# Validating password with BCrypt
+
+attr_reader :password
+validate :password_is_long_enough
+
+def password=(password)
+	@password = password
+	self.password_digest = BCrypt::Password.create(password)
+end
+
+private
+def password_is_long_enough
+	return if @password.nil?
+
+	@password.length < 6
+		errors[:password] << "is not long enough"
+	end
+end
+
+# Stick login logic in sessions_helper.rb, then put
+	include SessionsHelper in the application controller
+
+# Use build to set parents, i.e. @sub = current_user.subs.build(params[:sub])
+
+# New sub form, links section
+<% @sub.inks.each_with_index do |link, i| %>
+	<h2>Create Link</h2>
+	<% link_id = sub_links_attributes_#{i} %>
+	<label for="<%= link_id %>">URL</label>
+	<input
+		type="text"
+		name="sub[links_attributes][<%= i %>][url]"
+		id="<%= link_id %>"
+		value="<%= link.url %>">
+	<input type="submit">
+</form>
+
+# In controller's new action
+	def new
+		@sub = Sub.new
+		5.times { @sub.links.build }
+	end
+
+# [object].persisted? # => returns true if the object has been saved to the database, and false otherwise
+
+# Edits with nested form attributes -- new, broken data gets uploaded to the database.  Way to fix it is to add this line to the form:
+<input type="hidden" name="subs[links_attributes][<%= i %>"][id] value="<%= link.id %>"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
