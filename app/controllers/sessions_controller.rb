@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
 	end
 
 	def new
+		u = current_user
+		redirect_to user_url(u) if u 
 		@user = User.new
 	end
 

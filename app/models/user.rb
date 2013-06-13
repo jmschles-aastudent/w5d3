@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :authored_links, :class_name => "Link", :foreign_key => :author_id
   has_many :authored_comments, :class_name => "Comment", :foreign_key => :author_id
 
+  has_many :user_votes
+  has_many :links_voted_on, :through => :user_votes, :source => :link
+
   def password=(password)
   	self.password_digest = BCrypt::Password.create(password)
   end

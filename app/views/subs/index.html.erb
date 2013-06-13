@@ -3,5 +3,20 @@
 <ul>
 	<% @subs.each do |sub| %>
 		<li><%= link_to sub.name, sub_url(sub) %></li>
+		<% sub.links.sort_by { |link| link.score }.reverse.try(:each) do |link| %>
+		<ul>
+			<li>
+				<strong><%= link.title %></strong> - <em><%= link_to link.url, link_url(link) %> (<%= link.score %>)</em>
+				<br />
+				<% if link.author_id == current_user.id %>
+					<%= button_to "Edit Link", edit_link_url(link), :method => :get %>
+				<% end %>
+				<% unless current_user.links_voted_on.include?(link) %>
+					<%= button_to "Upvote", link_upvote_url(link) %>
+					<%= button_to "Downvote", link_downvote_url(link) %>
+				<% end %>
+			</li>
+		</ul>
+		<% end %>
 	<% end %>
 </ul>
